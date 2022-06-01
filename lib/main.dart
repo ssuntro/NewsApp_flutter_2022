@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:news_app/main_news_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,11 +36,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 5000), () {
+      print("navigate to main_news_page");
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: xx));
+    });
+  }
+
+// (context) => MainNewsPage()
+  Widget xx(BuildContext a) {
+    return MainNewsPage();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          children: <Widget>[
+            Lottie.asset('assets/dino.json'),
+          ],
         ),
       ),
     );
