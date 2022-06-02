@@ -5,6 +5,12 @@ class MainNewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    // return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Aaa"),
+      ),
+      body: Container(),
+    );
   }
 }
