@@ -50,7 +50,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   var isDisplay = false;
   Widget buildLottie() {
     print("buildLottie");
-    return Lottie.asset('assets/dino.json', onLoaded: (composition) {
+    return Lottie.asset('assets/dino.json', controller: _controller,
+        onLoaded: (composition) {
       setState(() {
         _controller
           ..duration = composition.duration
