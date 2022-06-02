@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/main_news_page.dart';
 import 'package:news_app/splash_page.dart';
 
 void main() {
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      routes: {MainNewsPage.routeName: (ctx) => MainNewsPage()},
       home: SplashPage(),
     );
   }

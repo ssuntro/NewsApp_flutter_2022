@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MainNewsPage extends StatelessWidget {
+  static const routeName = "main-news-page";
+
   MainNewsPage() {}
 
   @override

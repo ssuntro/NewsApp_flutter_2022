@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import 'a_stateful_widget.dart';
+import 'a_stateless_widget.dart';
 import 'main_news_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -12,15 +14,24 @@ class SplashPage extends StatefulWidget {
   _SplashPageState createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   _SplashPageState() {
     print("_SplashPageState - contruct state");
   }
+
+  AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
     print("_SplashPageState - initState");
+    // Future.delayed(const Duration(milliseconds: 5000), () {
+    //   print("navigate to main_news_page");
+    //   Navigator.pushReplacement(
+    //       context, MaterialPageRoute(builder: (_) => MainNewsPage()));
+    // });
+
+    _controller = AnimationController(vsync: this);
   }
 
   @override
@@ -33,27 +44,18 @@ class _SplashPageState extends State<SplashPage> {
   void dispose() {
     super.dispose();
     print("_SplashPageState - dispose");
-  }
-
-//
-  Widget xx(BuildContext a) {
-    return MainNewsPage();
+    _controller.dispose();
   }
 
   var isDisplay = false;
   Widget buildLottie() {
     print("buildLottie");
-    return Lottie.asset('assets/dino.json', onLoaded: (_) {
-      // Future.delayed(const Duration(milliseconds: 5000), () {
-      //   print("navigate to main_news_page");
-      //   Navigator.pushReplacement(
-      //       context, MaterialPageRoute(builder: (_) => MainNewsPage()));
-      // });
-
+    return Lottie.asset('assets/dino.json', onLoaded: (composition) {
       setState(() {
-        // isDisplay = !isDisplay;
+        _controller
+          ..duration = composition.duration
+          ..forward();
       });
-      print("setState is called.");
     });
   }
 
@@ -76,8 +78,15 @@ class _SplashPageState extends State<SplashPage> {
           children: <Widget>[
             buildLottie(),
             buildButton(),
-            // AStatelessWidget(),
-            // AStatefulWidget()
+            AStatelessWidget(
+              parsedString: DateTime.now().toString(),
+            ),
+            SizedBox(
+              height: 100,
+            ),
+            AStatefulWidget(
+              parsedString: DateTime.now().toString(),
+            ),
           ],
         ),
       ),
