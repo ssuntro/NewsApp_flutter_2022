@@ -19,17 +19,18 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
     print("_SplashPageState - contruct state");
   }
 
+//this as! (State<SplashPage> or TickerProviderStateMixin or TickerProvider)
   AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
     print("_SplashPageState - initState");
-    // Future.delayed(const Duration(milliseconds: 5000), () {
-    //   print("navigate to main_news_page");
-    //   Navigator.pushReplacement(
-    //       context, MaterialPageRoute(builder: (_) => MainNewsPage()));
-    // });
+    Future.delayed(const Duration(milliseconds: 5000), () {
+      print("navigate to main_news_page");
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => MainNewsPage()));
+    });
 
     _controller = AnimationController(vsync: this);
   }
@@ -42,9 +43,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
+    _controller.dispose();
     super.dispose();
     print("_SplashPageState - dispose");
-    _controller.dispose();
   }
 
   var isDisplay = false;
@@ -71,7 +72,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("News App"),
+        title: Text("News app"),
       ),
       body: Center(
         child: Column(
