@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:news_app/news_status.dart';
+import 'package:news_app/DM/news.dart';
+import 'package:news_app/DM/news_category.dart';
+import 'package:news_app/DM/news_status.dart';
 import 'package:news_app/news_status_widget.dart';
 
 class MainNewsPage extends StatelessWidget {
@@ -9,14 +11,19 @@ class MainNewsPage extends StatelessWidget {
   MainNewsPage() {}
 
   final model = [
-    {"title": "111", "status": NewsStatus.responded, "category": "animal"},
-    {"title": "222", "status": NewsStatus.closed, "category": "globalWarming"},
-    {"title": "333", "status": NewsStatus.closed, "category": "globalWarming"},
-    {
-      "title": "444",
-      "status": NewsStatus.pendingResponse,
-      "category": "finance"
-    }
+    News(
+        title: "111",
+        status: NewsStatus.responded,
+        category: NewsCategory.animal),
+    News(
+        title: "222",
+        status: NewsStatus.closed,
+        category: NewsCategory.globalWarming),
+    News(
+        title: "333",
+        status: NewsStatus.closed,
+        category: NewsCategory.globalWarming),
+    News(title: null, status: NewsStatus.pendingResponse, category: null)
   ];
 
   @override
@@ -24,10 +31,22 @@ class MainNewsPage extends StatelessWidget {
     // return Container();
     return Scaffold(
         appBar: AppBar(
-          title: Text("Aaa"),
+          leading: ElevatedButton(
+            onPressed: () {},
+            child: Icon(Icons.add),
+          ),
+          // title: Text("Aaa"),
+          actions: [
+            Row(
+              children: [
+                ElevatedButton(onPressed: () {}, child: Text("Reorder")),
+                ElevatedButton(onPressed: () {}, child: Text("Refresh")),
+              ],
+            )
+          ],
         ),
         body: ListView.builder(
-            itemCount: 4,
+            itemCount: model.length,
             itemBuilder: (_, index) {
               return Container(
                   padding: EdgeInsets.all(0),
@@ -41,7 +60,8 @@ class MainNewsPage extends StatelessWidget {
                     onPressed: () {},
                     child: Row(
                       children: [
-                        Image.asset("assets/animal.jpeg"),
+                        Image.asset(model[index].category?.imagepath ??
+                            "assets/default.png"),
                         Container(
                           width: 10,
                         ),
@@ -51,17 +71,15 @@ class MainNewsPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              (model[index]["title"] is String)
-                                  ? (model[index]["title"] as String)
-                                  : "",
+                              model[index].title ?? "",
                               maxLines: 1,
                               softWrap: false,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            ((model[index]["status"] is NewsStatus)
+                            (model[index].status != null
                                 ? NewsStatusWidget(
-                                    model:
-                                        (model[index]["status"] as NewsStatus))
+                                    model: model[index].status,
+                                  )
                                 : Container())
                           ],
                         ))
