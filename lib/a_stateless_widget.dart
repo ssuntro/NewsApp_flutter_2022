@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
-class AStatelessWidget extends StatelessWidget {
+class AStatelessWidget extends StatelessWidget with WidgetsBindingObserver {
   final String parsedString;
 
   AStatelessWidget({this.parsedString}) {
     print("AStatelessWidget is init");
-    // Future.delayed(const Duration(milliseconds: 5000), () {
-    //     print("navigate to main_news_page");
-    //     Navigator.pushReplacement(
-    //         context, MaterialPageRoute(builder: (_) => MainNewsPage()));
-    //   });
+    // WidgetsBinding.instance.addObserver(this); //with, implements, or extends
   }
 
   @override

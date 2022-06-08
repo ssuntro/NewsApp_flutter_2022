@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:news_app/news_status.dart';
+import 'package:news_app/news_status_widget.dart';
 
 class MainNewsPage extends StatelessWidget {
   static const routeName = "main-news-page";
 
   MainNewsPage() {}
+
+  final model = [
+    {"title": "111", "status": NewsStatus.responded, "category": "animal"},
+    {"title": "222", "status": NewsStatus.closed, "category": "globalWarming"},
+    {"title": "333", "status": NewsStatus.closed, "category": "globalWarming"},
+    {
+      "title": "444",
+      "status": NewsStatus.pendingResponse,
+      "category": "finance"
+    }
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +51,18 @@ class MainNewsPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "aaaaaaaaaaaaaaaaaaaaaaahhhaaaaaaa",
+                              (model[index]["title"] is String)
+                                  ? (model[index]["title"] as String)
+                                  : "",
                               maxLines: 1,
                               softWrap: false,
                               overflow: TextOverflow.ellipsis,
                             ),
-                            ElevatedButton(
-                              child: Text("Animal"),
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                  primary: Color.fromARGB(255, 198, 126, 210),
-                                  onPrimary: Color.fromARGB(255, 108, 8, 125)),
-                            )
+                            ((model[index]["status"] is NewsStatus)
+                                ? NewsStatusWidget(
+                                    model:
+                                        (model[index]["status"] as NewsStatus))
+                                : Container())
                           ],
                         ))
                       ],
