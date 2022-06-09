@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 enum NewsStatus { responded, closed, pendingResponse }
 
 extension NewsStatusExtension on NewsStatus {
-  // String get rawValue {
-  //   switch (this) {
-  //     case NewsStatus.closed:
-  //       return "closed";
-  //     case NewsStatus.responded:
-  //       return "responded";
-  //     case NewsStatus.pendingResponse:
-  //       return "pendingResponse";
-  //     default:
-  //       return "";
-  //   }
-  // }
+  String get rawValue {
+    switch (this) {
+      case NewsStatus.closed:
+        return "closed";
+      case NewsStatus.responded:
+        return "responded";
+      case NewsStatus.pendingResponse:
+        return "pending response";
+      default:
+        return "";
+    }
+  }
+
   Color get primaryColor {
     switch (this) {
       case NewsStatus.closed:

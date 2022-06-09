@@ -3,6 +3,7 @@ import 'package:news_app/DM/news.dart';
 import 'package:news_app/DM/news_category.dart';
 import 'package:news_app/DM/news_status.dart';
 import 'package:news_app/add_news_page.dart';
+import 'package:news_app/network.dart';
 
 import 'news_tile.dart';
 
@@ -66,7 +67,13 @@ class _MainNewsPageState extends State<MainNewsPage> {
                   },
                   context: context,
                   pageBuilder: (context, anim1, anim2) {
-                    return AddNewsPage();
+                    return AddNewsPage(
+                      onAdded: (addedNews) {
+                        setState(() {
+                          model.add(addedNews);
+                        });
+                      },
+                    );
                   });
             },
             child: Icon(Icons.add),
@@ -93,14 +100,25 @@ class _MainNewsPageState extends State<MainNewsPage> {
             )
           ],
         ),
-        body: ReorderableListView.builder(
-            itemCount: model.length,
-            itemBuilder: (_, index) {
-              return NewsTile(
-                  model: model[index],
-                  color: isReorderEnabled ? Colors.amber : Colors.white,
-                  key: Key(model[index].title ?? ""));
-            },
-            onReorder: onReorder));
+        body: RefreshIndicator(
+          child: ReorderableListView.builder(
+              itemCount: model.length,
+              itemBuilder: (_, index) {
+                return NewsTile(
+                    model: model[index],
+                    color: isReorderEnabled ? Colors.amber : Colors.white,
+                    key: Key(model[index].title ?? ""));
+              },
+              onReorder: onReorder),
+          onRefresh: onPullToRefresh,
+        ));
+  }
+
+  Future<void> onPullToRefresh() {
+    return Network.fetchNews().then((newModel) {
+      setState(() {
+        model = newModel;
+      });
+    });
   }
 }
