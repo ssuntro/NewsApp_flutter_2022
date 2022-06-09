@@ -2,8 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:news_app/DM/news.dart';
 import 'package:news_app/DM/news_category.dart';
 import 'package:news_app/DM/news_status.dart';
+import 'package:news_app/add_news_page.dart';
 
 import 'news_tile.dart';
+
+List<News> stubData() => [
+      News(
+          title: "111",
+          status: NewsStatus.responded,
+          category: NewsCategory.animal),
+      News(
+          title: "222",
+          status: NewsStatus.closed,
+          category: NewsCategory.globalWarming),
+      News(
+          title: "333",
+          status: NewsStatus.closed,
+          category: NewsCategory.globalWarming),
+      News(title: "444", status: NewsStatus.pendingResponse, category: null)
+    ];
 
 class MainNewsPage extends StatefulWidget {
   static const routeName = "main-news-page";
@@ -15,23 +32,22 @@ class MainNewsPage extends StatefulWidget {
 }
 
 class _MainNewsPageState extends State<MainNewsPage> {
-  final model = [
-    News(
-        title: "111",
-        status: NewsStatus.responded,
-        category: NewsCategory.animal),
-    News(
-        title: "222",
-        status: NewsStatus.closed,
-        category: NewsCategory.globalWarming),
-    News(
-        title: "333",
-        status: NewsStatus.closed,
-        category: NewsCategory.globalWarming),
-    News(title: "444", status: NewsStatus.pendingResponse, category: null)
-  ];
+  var model = stubData();
 
   var isReorderEnabled = false;
+
+  void onReorder(int oldIndex, int newIndex) {
+    print("reorder ja");
+
+    if (!isReorderEnabled) {
+      return;
+    }
+    if (oldIndex < newIndex) {
+      newIndex = newIndex - 1;
+    }
+    final News news = model.removeAt(oldIndex);
+    model.insert(newIndex, news);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +55,20 @@ class _MainNewsPageState extends State<MainNewsPage> {
     return Scaffold(
         appBar: AppBar(
           leading: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              showGeneralDialog(
+                  transitionBuilder: (context, ani1, ani2, child) {
+                    return SlideTransition(
+                      position: Tween(begin: Offset(0, 1), end: Offset(0, 0))
+                          .animate(ani1),
+                      child: child,
+                    );
+                  },
+                  context: context,
+                  pageBuilder: (context, anim1, anim2) {
+                    return AddNewsPage();
+                  });
+            },
             child: Icon(Icons.add),
           ),
           // title: Text("Aaa"),
@@ -53,31 +82,25 @@ class _MainNewsPageState extends State<MainNewsPage> {
                       });
                     },
                     child: Text("Reorder")),
-                ElevatedButton(onPressed: () {}, child: Text("Refresh")),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        model = stubData();
+                      });
+                    },
+                    child: Text("Refresh")),
               ],
             )
           ],
         ),
         body: ReorderableListView.builder(
-          itemCount: model.length,
-          itemBuilder: (_, index) {
-            return NewsTile(
-                model: model[index],
-                color: isReorderEnabled ? Colors.amber : Colors.white,
-                key: Key(model[index].title ?? ""));
-          },
-          onReorder: (oldIndex, newIndex) {
-            print("reorder ja");
-
-            if (!isReorderEnabled) {
-              return;
-            }
-            if (oldIndex < newIndex) {
-              newIndex = newIndex - 1;
-            }
-            final News news = model.removeAt(oldIndex);
-            model.insert(newIndex, news);
-          },
-        ));
+            itemCount: model.length,
+            itemBuilder: (_, index) {
+              return NewsTile(
+                  model: model[index],
+                  color: isReorderEnabled ? Colors.amber : Colors.white,
+                  key: Key(model[index].title ?? ""));
+            },
+            onReorder: onReorder));
   }
 }
