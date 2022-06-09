@@ -4,11 +4,11 @@ extension NewsCategoryExtension on NewsCategory {
   String get imagepath {
     switch (this) {
       case NewsCategory.animal:
-        return 'assets/animal.jpeg';
+        return 'assets/images/animal.jpeg';
       case NewsCategory.finance:
-        return "assets/finance.jpeg";
+        return "assets/images/finance.jpeg";
       case NewsCategory.globalWarming:
-        return "assets/global_warming.jpeg";
+        return "assets/images/global_warming.jpeg";
       default:
         return null;
     }

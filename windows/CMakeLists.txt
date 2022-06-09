@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(day1 LANGUAGES CXX)
+project(news_app LANGUAGES CXX)
 
-set(BINARY_NAME "day1")
+set(BINARY_NAME "news_app")
 
 cmake_policy(SET CMP0063 NEW)
 
