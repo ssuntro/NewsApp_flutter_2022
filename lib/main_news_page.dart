@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:news_app/DM/news.dart';
 import 'package:news_app/DM/news_category.dart';
 import 'package:news_app/DM/news_status.dart';
-import 'package:news_app/news_status_widget.dart';
+
+import 'news_tile.dart';
 
 class MainNewsPage extends StatelessWidget {
   static const routeName = "main-news-page";
@@ -23,7 +23,7 @@ class MainNewsPage extends StatelessWidget {
         title: "333",
         status: NewsStatus.closed,
         category: NewsCategory.globalWarming),
-    News(title: null, status: NewsStatus.pendingResponse, category: null)
+    News(title: "444", status: NewsStatus.pendingResponse, category: null)
   ];
 
   @override
@@ -45,47 +45,21 @@ class MainNewsPage extends StatelessWidget {
             )
           ],
         ),
-        body: ListView.builder(
-            itemCount: model.length,
-            itemBuilder: (_, index) {
-              return Container(
-                  padding: EdgeInsets.all(0),
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
-                        shadowColor: Colors.pink,
-                        padding: EdgeInsets.all(0)),
-                    onPressed: () {},
-                    child: Row(
-                      children: [
-                        Image.asset(model[index].category?.imagepath ??
-                            "assets/default.png"),
-                        Container(
-                          width: 10,
-                        ),
-                        Flexible(
-                            child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              model[index].title ?? "",
-                              maxLines: 1,
-                              softWrap: false,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            (model[index].status != null
-                                ? NewsStatusWidget(
-                                    model: model[index].status,
-                                  )
-                                : Container())
-                          ],
-                        ))
-                      ],
-                    ),
-                  ));
-            }));
+        body: ReorderableListView.builder(
+          itemCount: model.length,
+          itemBuilder: (_, index) {
+            return NewsTile(
+                model: model[index], key: Key(model[index].title ?? ""));
+          },
+          onReorder: (oldIndex, newIndex) {
+            print("reorder ja");
+
+            // if (oldIndex < newIndex) {
+            //   newIndex = newIndex - 1;
+            // }
+            // final News news = model.removeAt(oldIndex);
+            // model.insert(newIndex, news);
+          },
+        ));
   }
 }

@@ -3,6 +3,18 @@ import 'package:flutter/material.dart';
 enum NewsStatus { responded, closed, pendingResponse }
 
 extension NewsStatusExtension on NewsStatus {
+  // String get rawValue {
+  //   switch (this) {
+  //     case NewsStatus.closed:
+  //       return "closed";
+  //     case NewsStatus.responded:
+  //       return "responded";
+  //     case NewsStatus.pendingResponse:
+  //       return "pendingResponse";
+  //     default:
+  //       return "";
+  //   }
+  // }
   Color get primaryColor {
     switch (this) {
       case NewsStatus.closed:
@@ -26,19 +38,6 @@ extension NewsStatusExtension on NewsStatus {
         return Color.fromARGB(255, 200, 66, 48);
       default:
         return null;
-    }
-  }
-
-  String get rawValue {
-    switch (this) {
-      case NewsStatus.closed:
-        return "closed";
-      case NewsStatus.responded:
-        return "responded";
-      case NewsStatus.pendingResponse:
-        return "pendingResponse";
-      default:
-        return "";
     }
   }
 }

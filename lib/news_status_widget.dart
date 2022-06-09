@@ -10,9 +10,12 @@ class NewsStatusWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IgnorePointer(
+      ignoring: true,
       child: ElevatedButton(
-          child: Text(model.rawValue),
-          onPressed: () {},
+          child: Text(model.name),
+          onPressed: () {
+            print("aaaa");
+          },
           style: ElevatedButton.styleFrom(
             primary: model.primaryColor,
             onPrimary: model.onPrimaryColor,
