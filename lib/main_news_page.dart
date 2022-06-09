@@ -5,11 +5,16 @@ import 'package:news_app/DM/news_status.dart';
 
 import 'news_tile.dart';
 
-class MainNewsPage extends StatelessWidget {
+class MainNewsPage extends StatefulWidget {
   static const routeName = "main-news-page";
 
   MainNewsPage() {}
 
+  @override
+  State<MainNewsPage> createState() => _MainNewsPageState();
+}
+
+class _MainNewsPageState extends State<MainNewsPage> {
   final model = [
     News(
         title: "111",
@@ -26,6 +31,8 @@ class MainNewsPage extends StatelessWidget {
     News(title: "444", status: NewsStatus.pendingResponse, category: null)
   ];
 
+  var isReorderEnabled = false;
+
   @override
   Widget build(BuildContext context) {
     // return Container();
@@ -39,7 +46,13 @@ class MainNewsPage extends StatelessWidget {
           actions: [
             Row(
               children: [
-                ElevatedButton(onPressed: () {}, child: Text("Reorder")),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isReorderEnabled = !isReorderEnabled;
+                      });
+                    },
+                    child: Text("Reorder")),
                 ElevatedButton(onPressed: () {}, child: Text("Refresh")),
               ],
             )
@@ -49,16 +62,21 @@ class MainNewsPage extends StatelessWidget {
           itemCount: model.length,
           itemBuilder: (_, index) {
             return NewsTile(
-                model: model[index], key: Key(model[index].title ?? ""));
+                model: model[index],
+                color: isReorderEnabled ? Colors.amber : Colors.white,
+                key: Key(model[index].title ?? ""));
           },
           onReorder: (oldIndex, newIndex) {
             print("reorder ja");
 
-            // if (oldIndex < newIndex) {
-            //   newIndex = newIndex - 1;
-            // }
-            // final News news = model.removeAt(oldIndex);
-            // model.insert(newIndex, news);
+            if (!isReorderEnabled) {
+              return;
+            }
+            if (oldIndex < newIndex) {
+              newIndex = newIndex - 1;
+            }
+            final News news = model.removeAt(oldIndex);
+            model.insert(newIndex, news);
           },
         ));
   }

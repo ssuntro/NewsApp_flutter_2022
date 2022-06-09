@@ -6,8 +6,10 @@ import 'news_status_widget.dart';
 
 class NewsTile extends StatelessWidget {
   final News model;
+  final Color color;
 
-  NewsTile({@required this.model, Key key}) : super(key: key);
+  NewsTile({@required this.color, @required this.model, Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class NewsTile extends StatelessWidget {
         height: 100,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              primary: Colors.white,
+              primary: color,
               onPrimary: Colors.black,
               shadowColor: Colors.pink,
               padding: EdgeInsets.all(0)),
