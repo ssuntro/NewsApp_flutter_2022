@@ -114,11 +114,18 @@ class _MainNewsPageState extends State<MainNewsPage> {
         ));
   }
 
-  Future<void> onPullToRefresh() {
-    return Network.fetchNews().then((newModel) {
-      setState(() {
-        model = newModel;
-      });
+  Future<void> onPullToRefresh() async {
+    final newModel = await Network.fetchNews();
+    setState(() {
+      model = newModel;
     });
+    print("aaa");
+
+    // Network.fetchNews().then((newModel) {
+    //   setState(() {
+    //     model = newModel;
+    //   });
+    // });
+    // print("aaa");
   }
 }

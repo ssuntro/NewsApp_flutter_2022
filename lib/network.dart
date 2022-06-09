@@ -7,11 +7,11 @@ import 'package:news_app/DM/news_category.dart';
 import 'package:news_app/DM/news_status.dart';
 
 class Network {
-  static Future<List<News>> fetchNews() {
-    return http
-        .get(Uri.parse(
-            "https://www.hackingwithswift.com/samples/petitions-2.json"))
-        .then((response) {
+  static Future<List<News>> fetchNews() async {
+    try {
+      final response = await http.get(Uri.parse(
+          "https://www.hackingwithswift.com/samples/petitions-2.json"));
+
       if (response.statusCode >= 400) {
         throw HttpException("http error ${response.statusCode}");
       }
@@ -52,8 +52,8 @@ class Network {
       }).toList();
 
       return [...animal, ...globelWarming, ...finance];
-    }).catchError((err) {
+    } catch (error) {
       return <News>[];
-    });
+    }
   }
 }
