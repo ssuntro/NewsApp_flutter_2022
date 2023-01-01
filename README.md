@@ -1,4 +1,4 @@
-# News App
+# News App(Flutter version)
 
 
 This project is setup to be one of learning tools for "Practical Flutter 101" course(4 days) to guide student who has no experience of flutter or any mobile development through Flutter development from scratch till deliver their first Flutter project to Apple and Google play store.
