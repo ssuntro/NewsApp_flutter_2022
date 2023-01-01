@@ -11,16 +11,17 @@ This course is aim to "*Make it work first* and then make it right and make it f
 1. Flutter development with Dart.
 1. State management in Flutter such as Provider pattern.
 1. How to bridging Native feature and why?
-1. what's need to be do to submit Flutter app to Apple or Google play store?
+1. What's need to be do to submit Flutter app to Apple or Google play store?
 <br />
 
 ### Exclude topics
 Mainly is "*Make it right and make it fast*" topic.
 1. TDD
 1. Design pattern
-1. architecture pattern
-1. clan code
-1. animation
+1. Architecture pattern
+1. Clan code
+1. Animation
+1. Accessibility
 <br />
 
 ### Final app looks like at Day4
@@ -29,7 +30,7 @@ For demo vdo pls. visit [here](https://drive.google.com/file/d/1AgZ0jCGY3fUM9RrF
 
 | Splash screen | Loading screen | News list screen | New Detail screen | Add news screen |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-| <img width="200" alt="Screen Shot 2566-01-01 at 13 19 27" src="https://user-images.githubusercontent.com/17498546/210162677-f46dacfc-694b-464d-ae07-d6fc0cc287b7.png"> | <img width="200" alt="Screen Shot 2566-01-01 at 13 20 27" src="https://user-images.githubusercontent.com/17498546/210162683-d1ef516f-b013-447d-93cd-d37fbae06175.png"> | <img width="200" alt="Screen Shot 2566-01-01 at 13 19 59" src="https://user-images.githubusercontent.com/17498546/210162684-95eaf7f2-4745-46ed-a234-0f7636a4f880.png"> | <img width="200" alt="Screen Shot 2566-01-01 at 13 21 02" src="https://user-images.githubusercontent.com/17498546/210162686-7f3c1ab0-8781-46a7-9e69-e2bdf135c5d1.png"> | <img width="200" alt="Screen Shot 2566-01-01 at 13 21 29" src="https://user-images.githubusercontent.com/17498546/210162687-0110325f-cd52-4092-9bd4-6fb7d4676893.png"> |
+| <img width="200" alt="Splash screen" src="https://user-images.githubusercontent.com/17498546/210162677-f46dacfc-694b-464d-ae07-d6fc0cc287b7.png"> | <img width="200" alt="Loading screen" src="https://user-images.githubusercontent.com/17498546/210162683-d1ef516f-b013-447d-93cd-d37fbae06175.png"> | <img width="200" alt="News list screen" src="https://user-images.githubusercontent.com/17498546/210162684-95eaf7f2-4745-46ed-a234-0f7636a4f880.png"> | <img width="200" alt="New Detail screen" src="https://user-images.githubusercontent.com/17498546/210162686-7f3c1ab0-8781-46a7-9e69-e2bdf135c5d1.png"> | <img width="200" alt="Add news screen" src="https://user-images.githubusercontent.com/17498546/210162687-0110325f-cd52-4092-9bd4-6fb7d4676893.png"> |
 
 
 
