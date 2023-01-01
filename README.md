@@ -9,18 +9,18 @@ This project is setup to be one of learning tools for "Practical Flutter 101" co
 This course is aim to "*Make it work first* and then make it right and make it fast in the next course". So this are 4 basic Flutter development's learning topics that need to cover:
 
 1. Flutter development with Dart.
-2. State management in Flutter such as Provider pattern.
-2. How to bridging Native feature and why?
-3. what's need to be do to submit Flutter app to Apple or Google play store?
+1. State management in Flutter such as Provider pattern.
+1. How to bridging Native feature and why?
+1. what's need to be do to submit Flutter app to Apple or Google play store?
 <br />
 
 ### Exclude topics
 Mainly is "*Make it right and make it fast*" topic.
 1. TDD
-2. Design pattern
-3. architecture pattern
-4. clan code
-5. animation
+1. Design pattern
+1. architecture pattern
+1. clan code
+1. animation
 <br />
 
 ### Final app looks like at Day4
