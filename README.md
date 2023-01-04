@@ -1,4 +1,4 @@
-# News App(Flutter version)
+# News App("Flutter 4 days" version)
 
 
 This project is setup to be one of learning asset of "Practical Flutter 101" class(4 days) to guide student who has no experience of flutter or any mobile development through Flutter development from scratch till deliver their first Flutter project to Apple and Google play store.
