@@ -1,7 +1,8 @@
 # News App("4 days Flutter" version)
 
 
-This project is setup to be one of learning asset of "Practical Flutter 101" class(4 days) to guide student who has no experience of flutter or any mobile development through Flutter development from scratch till deliver their first Flutter project to Apple and Google play store.
+This project involves setting up and delivering their first Flutter project to the Apple and Google Play stores. It serves as a learning material for the "Basic Dart and Flutter" course and functions as a side project for both development and educational purposes.
+
 
 For more information, to see full functionality of final "News app" please visit [here](https://github.com/ssuntro/NewsApp_flutter_final) and for other version of "News app" which develop in difference mobile language and frameworksuch as native iOS(Swift), native Android(Kotlin), React Native pls visit - [here](https://github.com/ssuntro/NewsApp_class) 
 <br />
